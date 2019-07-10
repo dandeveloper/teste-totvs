@@ -1,0 +1,23 @@
+.search {
+  margin: 20px 0;
+  &__input {
+    appearance: none;
+    border: 0;
+    box-shadow: none;
+    height: 65px;
+    width: 620px;
+    font-size: 18px;
+    padding: 20px;
+  }
+  &__button {
+    width: 110px;
+    font-size: 0;
+    color: transparent;
+    background: #f6d555;
+    border: none;
+    .material-icons {
+      color: #fff;
+      font-size: 34px;
+    }
+  }
+}
