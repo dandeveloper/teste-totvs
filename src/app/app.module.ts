@@ -6,12 +6,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
 import { TopHeaderComponent } from './components/top-header/top-header.component';
+import { TopicsListComponent } from './components/topics-list/topics-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchFieldComponent,
-    TopHeaderComponent
+    TopHeaderComponent,
+    TopicsListComponent
   ],
   imports: [
     BrowserModule,

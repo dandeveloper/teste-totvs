@@ -2,22 +2,30 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    Accept: 'application/vnd.github.mercy-preview+json'
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
 
-  constructor(
-    private http: HttpClient
-  ) { }
+  httpOptions: any;
+  search: string;
 
-  getTopics(search: string) {
-    return this.http.get(`https://api.github.com/search/topics?q=${search}+is:featured`, httpOptions);
+  constructor(
+    private http: HttpClient,
+  ) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        Accept: 'application/vnd.github.mercy-preview+json'
+      })
+    };
+  }
+
+  setSearch(search: string) {
+    this.search = search;
+  }
+
+  getTopics() {
+    console.log(this.http.get(`https://api.github.com/search/topics?q=${this.search}+is:featured`, this.httpOptions));
+    return this.http.get(`https://api.github.com/search/topics?q=${this.search}+is:featured`, this.httpOptions);
   }
 }
