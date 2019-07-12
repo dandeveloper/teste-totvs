@@ -8,11 +8,14 @@ import { SearchService } from '../../services/search.service';
 })
 export class TopicsListComponent implements OnInit {
 
-  topics: any;
+  search: any[];
 
   constructor(private searchService: SearchService) { }
 
   ngOnInit() {
+    this.searchService.getSearch().subscribe(
+      data => this.search = data
+    );
   }
 
 }

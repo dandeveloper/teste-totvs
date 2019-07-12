@@ -15,8 +15,14 @@ export class SearchFieldComponent implements OnInit {
   ) { }
 
   handleClick(search: string) {
-    console.log(search);
+    // console.log(search);
     this.searchService.setSearch(search);
+    this.searchService.getSearch().subscribe(
+      data => console.log('SearchFieldComponent', data)
+    );
+    // this.searchService.getTopics(search).subscribe(
+    //   data => console.log('data', data)
+    // );
   }
 
   ngOnInit() {
