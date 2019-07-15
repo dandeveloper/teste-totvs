@@ -7,9 +7,10 @@
         </div>
         <div class="topic__description">
             <p class="topic__content">{{ topic.description }}</p>
-            <a class="topic__ver-mais">VER MAIS</a>
+            <a (click)="openModal()" class="topic__ver-mais">VER MAIS</a>
         </div>
     </div>
+    <app-modal class="modal"></app-modal>
 </div>
 <ng-template #empty>
     <div class="empty-search">

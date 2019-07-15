@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { SearchFieldComponent } from './components/search-field/search-field.component';
 import { TopHeaderComponent } from './components/top-header/top-header.component';
 import { TopicsListComponent } from './components/topics-list/topics-list.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchFieldComponent,
     TopHeaderComponent,
-    TopicsListComponent
+    TopicsListComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

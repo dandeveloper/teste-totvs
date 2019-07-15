@@ -1,0 +1,12 @@
+<ng-container *ngIf="opened">
+  <div class="modal__bg"></div>
+  <div class="modal__container">
+    <div class="modal__content">
+      <div class="modal__text">Tem certeza que deseja ir para a tela?</div>
+      <div class="modal__links">
+        <a (click)="close()" class="modal__link modal__link--yes">NÃO</a>
+        <a (click)="close()" class="modal__link modal__link--no">SIM</a>
+      </div>
+    </div>
+  </div>
+</ng-container>

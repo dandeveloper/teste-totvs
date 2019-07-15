@@ -1,20 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SearchService } from '../../services/search.service';
-// import { Search } from '../../services/search';
-import { Observable, Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-topics-list',
   templateUrl: './topics-list.component.html',
   styleUrls: ['./topics-list.component.scss']
 })
-export class TopicsListComponent implements OnInit {
+export class TopicsListComponent implements OnInit, OnDestroy {
 
   topics = [];
-  topicState: boolean[];
+  opened: boolean;
 
-  constructor(private searchService: SearchService) { }
+  constructor(
+    private searchService: SearchService,
+    private modalService: ModalService
+  ) { }
 
   ngOnInit() {
     this.searchService.topics$
@@ -23,8 +24,16 @@ export class TopicsListComponent implements OnInit {
     );
   }
 
+  openModal() {
+    this.modalService.opened$.next(true);
+  }
+
   activateClass(topic) {
     topic.active = !topic.active;
+  }
+
+  ngOnDestroy() {
+    this.searchService.topics$.unsubscribe();
   }
 
 }
