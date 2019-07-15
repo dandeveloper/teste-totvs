@@ -11,6 +11,10 @@
     max-height: 60px;
     &.active {
       max-height: 300px;
+      .material-icons {
+        color: #c290ea;
+        transform: rotate(180deg);
+      }
     }
     &__header {
       padding: 20px;
@@ -32,10 +36,16 @@
       font-weight: bold;
     }
     &__action {
+      display: inline-flex;
       text-align: right;
       color: #c290ea;
       font-weight: bold;
       font-size: 14px;
+      line-height: 22px;
+      .material-icons {
+        color: #c290ea;
+        transition: transform .3s;
+      }
     }
     &__ver-mais {
       color: #ffffff;

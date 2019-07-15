@@ -27,8 +27,7 @@ export class SearchService {
 
   search(term: string) {
     return this.http.get(`${environment.GithubAPI}search/topics?q=${term}+is:featured`, this.httpOptions)
-    .pipe(
-    ).subscribe(data => {
+    .subscribe(data => {
       this.topics$.next(data['items']);
     });
   }

@@ -2,7 +2,8 @@
     <strong>Resultado de busca</strong>
     <div class="topic" *ngFor="let topic of topics" [ngClass]="{'active': topic.active}">
         <div class="topic__header">
-            <strong class="topic__name">{{ topic.display_name }}</strong><a (click)="activateClass(topic)" class="topic__action">Ver detalhes da ação</a>
+            <strong class="topic__name">{{ topic.display_name }}</strong>
+            <a (click)="activateClass(topic)" class="topic__action">Ver detalhes da ação<i class="material-icons">expand_more</i></a>
         </div>
         <div class="topic__description">
             <p class="topic__content">{{ topic.description }}</p>
