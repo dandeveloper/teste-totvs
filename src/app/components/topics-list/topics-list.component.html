@@ -1,4 +1,18 @@
-<h3>Topics</h3>
-<div *ngFor="let topic of topics | async" >
-    <span>{{ topic }}</span>
+<div class="search-results" *ngIf="topics.length else empty">
+    <strong>Resultado de busca</strong>
+    <div class="topic" *ngFor="let topic of topics" [ngClass]="{'active': topic.active}">
+        <div class="topic__header">
+            <strong class="topic__name">{{ topic.display_name }}</strong><a (click)="activateClass(topic)" class="topic__action">Ver detalhes da ação</a>
+        </div>
+        <div class="topic__description">
+            <p class="topic__content">{{ topic.description }}</p>
+            <a class="topic__ver-mais">VER MAIS</a>
+        </div>
+    </div>
 </div>
+<ng-template #empty>
+    <div class="empty-search">
+        <img class="empty-search__image" src="/assets/images/empty-search.svg">
+        <strong class="empty-search__text">Você ainda não realizou nenhuma busca!</strong>
+    </div>
+</ng-template>

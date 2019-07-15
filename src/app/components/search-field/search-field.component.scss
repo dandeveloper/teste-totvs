@@ -8,13 +8,22 @@
     width: 620px;
     font-size: 18px;
     padding: 20px;
+    border-radius: 3px 0 0 3px;
   }
   &__button {
     width: 110px;
     font-size: 0;
     color: transparent;
     background: #f6d555;
+    border-radius: 0 3px 3px 0;
     border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+    outline: none;
+
+    &:hover {
+      background: lighten(#f6d555,10%);
+    }
     .material-icons {
       color: #fff;
       font-size: 34px;
