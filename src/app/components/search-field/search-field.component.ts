@@ -13,7 +13,9 @@ export class SearchFieldComponent implements OnInit {
   ) { }
 
   handleClick(term: string) {
-    this.searchService.search(term);
+    if (term.length) {
+      this.searchService.search(term);
+    }
   }
 
   ngOnInit() {
