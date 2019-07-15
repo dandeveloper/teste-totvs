@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../services/search.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-search-field',
@@ -7,6 +8,8 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./search-field.component.scss']
 })
 export class SearchFieldComponent implements OnInit {
+
+  searchForm = new FormGroup({});
 
   constructor(
     private searchService: SearchService

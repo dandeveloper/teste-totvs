@@ -1,14 +1,6 @@
-<div class="search container">
+<form [formGroup]="searchForm" class="search container">
   <input class="search__input"
-    type="search"
     placeholder="Buscar por tópico. Ex: Javascript"
     #term>
   <button type="submit" class="search__button" aria-label="Buscar" (click)="handleClick(term.value)"><i class="material-icons">search</i></button>
-</div>
-<!-- <ul *ngIf="results">
-  <li *ngFor="let result of results">
-    <a href="#">
-      {{ result.display_name }}
-    </a>
-  </li>
-</ul> -->
+</form>
