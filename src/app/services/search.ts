@@ -1,3 +1,3 @@
 export interface Search {
-  topics: any;
+  items: [];
 }

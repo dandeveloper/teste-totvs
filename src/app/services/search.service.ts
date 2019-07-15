@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Search } from './search';
-import { tap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap, tap, map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
@@ -11,7 +13,7 @@ import { tap } from 'rxjs/operators';
 export class SearchService {
 
   httpOptions: any;
-  search: string;
+  topics$ = new BehaviorSubject([]);
 
   constructor(
     private http: HttpClient,
@@ -23,14 +25,11 @@ export class SearchService {
     };
   }
 
-  setSearch(search: string) {
-    this.search = search;
-  }
-
-  getSearch() {
-    return this.http.get<Search>(`https://api.github.com/search/topics?q=javascript+is:featured`, this.httpOptions)
+  search(term: string) {
+    return this.http.get(`${environment.GithubAPI}search/topics?q=${term}+is:featured`, this.httpOptions)
     .pipe(
-      tap(console.log)
-    );
+    ).subscribe(data => {
+      this.topics$.next(data['items']);
+    });
   }
 }

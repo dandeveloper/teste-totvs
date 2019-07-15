@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../services/search.service';
+// import { Search } from '../../services/search';
+import { Observable, Subject } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-topics-list',
@@ -8,14 +11,20 @@ import { SearchService } from '../../services/search.service';
 })
 export class TopicsListComponent implements OnInit {
 
-  search: any[];
+  topics = [];
+  topicState: boolean[];
 
   constructor(private searchService: SearchService) { }
 
   ngOnInit() {
-    this.searchService.getSearch().subscribe(
-      data => this.search = data
+    this.searchService.topics$
+    .subscribe(
+      res => this.topics = res
     );
+  }
+
+  activateClass(topic) {
+    topic.active = !topic.active;
   }
 
 }
