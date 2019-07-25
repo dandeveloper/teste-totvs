@@ -1,6 +1,7 @@
-<form [formGroup]="searchForm" class="search container">
-  <input class="search__input"
-    placeholder="Buscar por tópico. Ex: Javascript"
-    #term>
-  <button type="submit" class="search__button" aria-label="Buscar" (click)="handleClick(term.value)"><i class="material-icons">search</i></button>
+<form method="" class="search container" [formGroup]="searchForm" (ngSubmit)="searchSbumit()">
+  <input class="search__input" type="text" placeholder="Buscar por tópico. Ex: Javascript"
+    formControlName="search" name="search" id="search">
+  <button [disabled]="searchForm.invalid" type="submit" class="search__button" aria-label="Buscar">
+    <i class="material-icons">search</i>
+  </button>
 </form>
