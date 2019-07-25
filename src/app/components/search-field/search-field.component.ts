@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../services/search.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-search-field',
@@ -9,19 +9,25 @@ import { FormGroup } from '@angular/forms';
 })
 export class SearchFieldComponent implements OnInit {
 
-  searchForm = new FormGroup({});
+  searchForm: FormGroup;
 
   constructor(
-    private searchService: SearchService
+    private searchService: SearchService,
+    private formBuilder: FormBuilder
   ) { }
 
-  handleClick(term: string) {
-    if (term.length) {
-      this.searchService.search(term);
-    }
+  formSetup() {
+    this.searchForm = this.formBuilder.group({
+      search: [null, Validators.required]
+    });
+  }
+
+  searchSbumit() {
+    this.searchService.search(this.searchForm.value.search);
   }
 
   ngOnInit() {
+    this.formSetup();
   }
 
 }
