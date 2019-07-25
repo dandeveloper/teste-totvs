@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SearchService } from '../../services/search.service';
 import { ModalService } from '../../services/modal.service';
+import Search from '../../services/search';
 
 @Component({
   selector: 'app-topics-list',
@@ -9,7 +10,7 @@ import { ModalService } from '../../services/modal.service';
 })
 export class TopicsListComponent implements OnInit, OnDestroy {
 
-  topics = [];
+  topics: Search[] = [];
   opened: boolean;
 
   constructor(
@@ -18,10 +19,7 @@ export class TopicsListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.searchService.topics$
-    .subscribe(
-      res => this.topics = res
-    );
+    this.searchService.topics$.subscribe( (res: Search[]) => this.topics = res );
   }
 
   openModal() {
