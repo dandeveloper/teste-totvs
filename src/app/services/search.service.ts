@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Subject, Subscription } from 'rxjs';
+import { map } from 'rxjs/operators';
 import Search from './search';
 
 
@@ -11,7 +12,7 @@ import Search from './search';
 })
 export class SearchService {
 
-  httpOptions: any;
+  private httpOptions: any;
   topics$ = new Subject();
 
   constructor(
@@ -26,9 +27,13 @@ export class SearchService {
 
   search(term: string): Subscription {
     return this.http.get<Search[]>(`${environment.GithubAPI}search/topics?q=${encodeURI(term)}+is:featured`, this.httpOptions)
+    .pipe(
+      map( (data: any) => {
+        return data.items;
+      })
+    )
     .subscribe(data => {
-      // tslint:disable-next-line: no-string-literal
-      this.topics$.next(data['items']);
+      this.topics$.next(data);
     });
   }
 }
